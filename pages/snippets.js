@@ -6,7 +6,18 @@ export default class Snippets extends Component {
     return (
       <div>
       <Navigation />
-        <h1>Snippets</h1>
+        <h1>Snippets ain't ready yet. Come back l8r.</h1>
+
+        <style jsx>
+          {`
+            h1 {
+              text-align: center;
+              padding: 30px;
+              font-size: 2rem;
+              font-weight: 600;
+            }
+          `}
+        </style>
       </div>
     )
   }

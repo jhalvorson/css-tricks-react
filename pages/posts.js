@@ -6,7 +6,18 @@ export default class Posts extends Component {
     return (
       <div>
         <Navigation />
-        <h1>Posts</h1>
+        <h1>Not built this bit yet. Go away.</h1>
+
+      <style jsx>
+        {`
+          h1 {
+            text-align: center;
+            padding: 30px;
+            font-size: 2rem;
+            font-weight: 600;
+          }
+        `}
+      </style>
       </div>
     )
   }

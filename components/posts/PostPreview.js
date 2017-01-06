@@ -12,7 +12,8 @@ export default class PostPreview extends Component {
         <style jsx>
         {`
           a {
-            color: var(--color-dark-grey)
+            color: var(--color-dark-grey);
+            font-size: 1rem;
           }
         `}
         </style>

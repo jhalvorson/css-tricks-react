@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Navigation from '../components/nav/Navigation'
+import Footer from '../components/footer/Footer'
+
 require('es6-promise').polyfill()
 import fetch from 'fetch-everywhere'
 
@@ -98,8 +100,31 @@ export default class Post extends Component {
           .codepen a {
             color: #fff;
           }
+
+          blockquote {
+            padding-left: 20px;
+            margin: 20px 0 20px 40px;
+            font-size: 1.2rem;
+            border-left: 5px solid var(--color-indigo);
+          }
+
+          .content ul {
+            list-style: circle;
+            margin-left: 40px;
+          }
+
+          .content li {
+            padding: 8px 0;
+          }
+
+          @media(max-width: 1000px) {
+            .content {
+              padding: 0 30px;
+            }
+          }
         `}
         </style>
+        <Footer />
       </main>
     )
   }
