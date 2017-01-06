@@ -16,10 +16,10 @@ var wp = new WPAPI({ endpoint: 'https://css-tricks.com/wp-json/' });
 export default class App extends Component {
   static async getInitialProps () {
     // eslint-disable-next-line no-undef
-    // const url = 'https://css-tricks.com/wp-json/wp/v2/'
-    // const getPosts = await fetch(`${url}posts?per_page=20&page=1`)
-    // let posts = await getPosts.json()
-    // return { posts }
+    const url = 'https://css-tricks.com/wp-json/wp/v2/'
+    const getPosts = await fetch(`${url}posts?per_page=20&page=1`)
+    let posts = await getPosts.json()
+    return { posts }
   }
 
   constructor() {
@@ -29,14 +29,14 @@ export default class App extends Component {
 
     this.state = {
       notification: true,
-      page: 0,
+      page: 2,
       loadingPosts: false,
       posts: []
     }
   }
 
   componentDidMount() {
-    this.loadMore()
+    // this.loadMore()
   }
 
   closeNotification() {
@@ -53,7 +53,7 @@ export default class App extends Component {
       loadingPosts: true
     })
     //This seems really messy, will get it running but needs to be reviewed @REVIEW
-    wp.posts().page(this.state.page + 1).perPage(20).offset(this.state.posts.length).embed().then((posts) => {
+    wp.posts().page(this.state.page + 1).perPage(20).offset(this.state.posts.length == 0 ? 20 : this.state.posts.length).embed().then((posts) => {
       this.setState({
         loadingPosts: false,
         page: this.state.page + 1,
@@ -79,6 +79,15 @@ export default class App extends Component {
              null
           }
 
+          {
+            this.props.posts.map((data, index) =>
+            <li key={`class-${data.id}`} i={index}>
+              <PostPreview
+                data={data}
+               />
+            </li>
+            )
+          }
 
 
           { //let's add a simple loader
