@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Navigation from '../components/nav/Navigation'
+import Notification from '../components/notification/Notification'
 import Link from 'next/link'
 require('es6-promise').polyfill()
-require('fetch-everywhere')
+import fetch from 'fetch-everywhere'
 import Styles from '../styles/base'
 
 export default class App extends Component {
@@ -14,13 +15,35 @@ export default class App extends Component {
     const posts = await getPosts.json()
     return { posts }
   }
+  constructor() {
+    super()
+
+    this.closeNotification = this.closeNotification.bind(this)
+
+    this.state = {
+      notification: true
+    }
+  }
+
+  closeNotification() {
+    this.setState({
+      notification: false
+    })
+  }
+
   render() {
     return (
       <main>
         <Navigation />
-        <div className="notification">
-          <p>Testing</p>
-        </div>
+
+        {this.state.notification ?
+          <Notification
+              closeNotification={() => this.closeNotification()}
+             />
+           :
+           null
+        }
+
         <div className="main-posts">
           {
             this.props.posts.map((data, index) =>
@@ -51,6 +74,8 @@ export default class App extends Component {
 
         <style jsx global>
         {`
+          @import url('https://fonts.googleapis.com/css?family=Muli');
+
           /* Reset */
 
           html, body, div, span, applet, object, iframe,
@@ -100,16 +125,19 @@ export default class App extends Component {
           /* Styles */
 
           :root {
-            --color-orange: #ee8c25;
+            /*--color-orange: #ee8c25;*/
+            --color-orange: #FFA726;
             --color-white: #FFFFFF;
             --color-grey: #f8f6f6;
             --color-dark-grey: #222222;
             --color-links: #7db1ef;
+
+            --color-amber: #FFCA28;
           }
 
           body {
             margin: 0;
-            font-family: sans-serif;
+            font-family: 'Muli', sans-serif;
             color: var(--color-dark-grey);
             font-size: 16px;
           }

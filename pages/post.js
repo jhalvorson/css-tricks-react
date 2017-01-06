@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Navigation from '../components/nav/Navigation'
+require('es6-promise').polyfill()
+import fetch from 'fetch-everywhere'
 
 export default class Post extends Component {
   static async getInitialProps ({ query: { slug } }) {
