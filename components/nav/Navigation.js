@@ -77,6 +77,8 @@ export default class Nav extends Component {
             --color-links: #7db1ef;
 
             --color-amber: #FFCA28;
+            --color-indigo: #5C6BC0;
+            --color-grey-blue: #78909C;
           }
 
           body {
@@ -116,7 +118,7 @@ export default class Nav extends Component {
             display: flex;
             padding: 0px;
             align-items: center;
-            background-color: var(--color-orange);
+            background-color: var(--color-indigo);
             padding: 15px;
           }
 
